@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "akashmaiyar/cicd-nodejs-app"
+        IMAGE_NAME = "akashmaiyar/cicd-nodejs-app:3"
     }
 
     stages {
