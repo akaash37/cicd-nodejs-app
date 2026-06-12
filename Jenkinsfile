@@ -12,7 +12,11 @@ pipeline {
                 checkout scm
             }
         }
-
+        stage('Branch Info') {
+    steps {
+        echo "Branch: ${env.BRANCH_NAME}"
+    }
+}
         stage('Build Docker Image') {
             steps {
                 sh '''
