@@ -1,9 +1,9 @@
-const express = require("express");
+atconst express = require("express");
 
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("CI/CD Pipeline Working");
+  res.send("CI/CD Pipeline New feature");
 });
 
 app.listen(3000, () => {
@@ -11,3 +11,8 @@ app.listen(3000, () => {
 });// test
 // test
 // test
+<<<<<<< HEAD
+=======
+// test
+// feature branch test
+>>>>>>> feature/login
