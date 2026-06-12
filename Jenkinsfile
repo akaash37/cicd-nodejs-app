@@ -3,15 +3,24 @@ pipeline {
 
     environment {
         IMAGE_NAME = "akashmaiyar/cicd-nodejs-app"
+<<<<<<< HEAD
         APP_SERVER = "10.0.3.151"
+=======
+>>>>>>> feature/login
     }
 
     stages {
 
+<<<<<<< HEAD
         stage('Branch Info') {
             steps {
                 echo "Building Branch: ${env.BRANCH_NAME}"
                 echo "Build Number: ${BUILD_NUMBER}"
+=======
+        stage('Checkout') {
+            steps {
+                checkout scm
+>>>>>>> feature/login
             }
         }
 
@@ -24,12 +33,15 @@ pipeline {
         }
 
         stage('Docker Login') {
+<<<<<<< HEAD
             when {
                 anyOf {
                     branch 'develop'
                     branch 'main'
                 }
             }
+=======
+>>>>>>> feature/login
             steps {
                 withCredentials([
                     usernamePassword(
@@ -45,6 +57,7 @@ pipeline {
             }
         }
 
+<<<<<<< HEAD
         stage('Push Docker Image') {
             when {
                 anyOf {
@@ -52,12 +65,16 @@ pipeline {
                     branch 'main'
                 }
             }
+=======
+        stage('Push Image') {
+>>>>>>> feature/login
             steps {
                 sh '''
                 docker push $IMAGE_NAME:$BUILD_NUMBER
                 '''
             }
         }
+<<<<<<< HEAD
 
         stage('Deploy to App Server') {
             when {
@@ -166,3 +183,7 @@ pipeline {
 //         }
 //     }
 // }
+=======
+    }
+}
+>>>>>>> feature/login
