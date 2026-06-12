@@ -46,27 +46,22 @@ pipeline {
         }
 
         stage('Deploy') {
-
     steps {
-
         sshagent(['app-server-ssh']) {
-
-            sh '''
+            sh """
             ssh -o StrictHostKeyChecking=no ubuntu@10.0.3.151 '
+                sudo docker pull ${IMAGE_NAME}:${BUILD_NUMBER}
 
-            docker pull akashmaiyar/cicd-nodejs-app:${BUILD_NUMBER}
+                sudo docker stop cicd-app || true
 
-            docker stop cicd-app || true
+                sudo docker rm cicd-app || true
 
-            docker rm cicd-app || true
-
-            docker run -d \
-            --name cicd-app \
-            -p 3000:3000 \
-            akashmaiyar/cicd-nodejs-app:${BUILD_NUMBER}
-
+                sudo docker run -d \
+                    --name cicd-app \
+                    -p 3000:3000 \
+                    ${IMAGE_NAME}:${BUILD_NUMBER}
             '
-            '''
+            """
         }
     }
 }
